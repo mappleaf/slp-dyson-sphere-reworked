@@ -1,11 +1,11 @@
-  {
+{
   "name": "slp-dyson-sphere-reworked",
   "version": "100.0.1",
   "factorio_version": "2.0",
   "title": "SLP - Dyson Sphere Reworked",
   "author": "SLywnow",
   "contact": "",
-  "homepage": "https://t.me/slywnowgameschat",
+  "homepage": "https://github.com/mappleaf/tenebris",
   "description": "Who needs a fusion reactor when you have the whole sun? Steer the starship directly into its orbit and channel an incredible amount of energy where you need it with new technologies. The main thing is not to forget to leave the ship before departure! Make dyson sphere near star and forget about other energy sources in planets and in space!",
   "dependencies": ["base >= 0.2.0", "space-age"]
 }
