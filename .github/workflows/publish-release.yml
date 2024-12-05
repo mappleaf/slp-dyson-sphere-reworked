@@ -1,0 +1,41 @@
+name: "publish-release"
+
+on:
+  push:
+    branches:
+      - "stable"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@master
+    - name: Get name from info.json (stable)
+      id: getname
+      uses: ashley-taylor/read-json-property-action@v1.2
+      with:
+        path: info.json
+        property: name
+    - name: Get version from info.json (stable)
+      id: getversion
+      uses: ashley-taylor/read-json-property-action@v1.2
+      with:
+        path: info.json
+        property: version
+    - name: Echo name
+      run: echo ${{ steps.getname.outputs.value }}
+    - name: Echo version
+      run: echo ${{ steps.getversion.outputs.value }}
+    - name: Archive Release
+      uses: thedoctor0/zip-release@0.7.6
+      with:
+        type: 'zip'
+        filename: "${{ steps.getname.outputs.value }}_${{ steps.getversion.outputs.value }}.zip"
+        exclusions: '*.git* *.md /.github *.sh /.vscode /.releaserc'
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: "v${{ steps.getversion.outputs.value }}"
+        artifacts: "${{ steps.getname.outputs.value }}_${{ steps.getversion.outputs.value }}.zip"
