@@ -28,14 +28,23 @@ jobs:
       run: echo ${{ steps.getname.outputs.value }}
     - name: Echo version
       run: echo ${{ steps.getversion.outputs.value }}
+    - name: Manage files
+      run: |
+        mkdir -p build/${{ steps.getname.outputs.value }}
+        rsync -av --progress . build/${{ steps.getname.outputs.value }} --exclude build
     - name: Archive Release
       uses: thedoctor0/zip-release@0.7.6
       with:
         type: 'zip'
+        directory: "./build"
+        # path: "./${{ steps.getname.outputs.value }}"
         filename: "${{ steps.getname.outputs.value }}_${{ steps.getversion.outputs.value }}.zip"
-        exclusions: '*.git* *.md /.github *.sh /.vscode /.releaserc'
+        exclusions: '*.git* *.md *.sh *.vscode *.releaserc'
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
+        allowUpdates: true
+        artifactErrorsFailBuild: true
+        # updateOnlyUnreleased: true # Can we have production at home? Production at home:
         tag: "v${{ steps.getversion.outputs.value }}"
-        artifacts: "${{ steps.getname.outputs.value }}_${{ steps.getversion.outputs.value }}.zip"
+        artifacts: "./build/${{ steps.getname.outputs.value }}_${{ steps.getversion.outputs.value }}.zip"
