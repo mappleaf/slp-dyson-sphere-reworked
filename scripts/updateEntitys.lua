@@ -97,7 +97,7 @@ function platformArrived(event)
 	
 	if platform.space_location ~= nil and  platform.space_location.name == "slp-solar-system-sun" then 
 		for _, player in pairs(game.players) do
-			if player.character ~= nil and player.surface == platform.surface then
+			if player.character ~= nil and player.character.surface == platform.surface then
 				if settings.startup["ds-sun-killer"].value then
 				player.print({"pl-to-die",player.name,platform.name})
 				player.character.damage(1000000000, "enemy")

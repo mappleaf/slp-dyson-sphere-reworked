@@ -139,6 +139,10 @@ data:extend(
       },
       {
         type = "unlock-recipe",
+        recipe = "slp-ds-satellite-v2"
+      },
+      {
+        type = "unlock-recipe",
         recipe = "ds-energy-small-loader"
       }
     },

@@ -39,6 +39,23 @@ data:extend(
 		results = {{type="item", name="slp-ds-satellite", amount=1}},
 		requester_paste_multiplier = 1
 	},
+	{
+		type = "recipe",
+		name = "slp-ds-satellite-v2",
+		energy_required = 5,
+		enabled = false,
+		category = "crafting",
+		ingredients =
+		{
+		  {type = "item", name = "radar", amount = 10},
+		  {type = "item", name = "processing-unit", amount = 60},
+		  {type = "item", name = "solar-panel", amount = 100},
+		  {type = "item", name = "slp-sun-fuel-mk2", amount = 10},
+		  {type = "item", name = "ds-entangled-core", amount = 1}
+		},
+		results = {{type="item", name="slp-ds-satellite", amount=1}},
+		requester_paste_multiplier = 1
+	},
 	
 	--satellite near planet
 	{
